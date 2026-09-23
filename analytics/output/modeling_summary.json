@@ -1,0 +1,76 @@
+{
+  "train_rows": 711,
+  "test_rows": 178,
+  "class_counts": {
+    "0": 549,
+    "1": 340
+  },
+  "class_percentages": {
+    "0": 61.75,
+    "1": 38.25
+  },
+  "classification_metrics": {
+    "Logistic Regression": {
+      "accuracy": 0.809,
+      "precision": 0.7833,
+      "recall": 0.6912,
+      "f1": 0.7344,
+      "auc": 0.861
+    },
+    "Decision Tree": {
+      "accuracy": 0.764,
+      "precision": 0.76,
+      "recall": 0.5588,
+      "f1": 0.6441,
+      "auc": 0.8374
+    },
+    "Random Forest": {
+      "accuracy": 0.809,
+      "precision": 0.7656,
+      "recall": 0.7206,
+      "f1": 0.7424,
+      "auc": 0.8196
+    }
+  },
+  "imbalance_metrics": {
+    "Baseline": {
+      "precision": 0.7833,
+      "recall": 0.6912,
+      "f1": 0.7344
+    },
+    "Class weight balanced": {
+      "precision": 0.7183,
+      "recall": 0.75,
+      "f1": 0.7338
+    },
+    "SMOTE on training data": {
+      "precision": 0.7353,
+      "recall": 0.7353,
+      "f1": 0.7353
+    }
+  },
+  "best_parameters": {
+    "model__max_depth": 4,
+    "model__max_features": "sqrt",
+    "model__n_estimators": 200
+  },
+  "grid_search_best_cv_f1": 0.7448,
+  "tuned_random_forest_test_metrics": {
+    "accuracy": 0.8202,
+    "precision": 0.8333,
+    "recall": 0.6618,
+    "f1": 0.7377,
+    "auc": 0.8376
+  },
+  "oob_score": 0.8172,
+  "regression_metrics": {
+    "mae": 21.0986,
+    "rmse": 41.7021,
+    "r2": 0.3482,
+    "adjusted_r2": 0.3091
+  },
+  "residual_spread_correlation": 0.5174,
+  "heteroscedasticity_detected": true,
+  "saved_pipeline": "Random Forest",
+  "reload_predictions_match": true
+}

@@ -1,0 +1,45 @@
+{
+  "raw_shape": [
+    891,
+    15
+  ],
+  "clean_shape": [
+    889,
+    14
+  ],
+  "missing_percentages": {
+    "age": 19.87,
+    "embarked": 0.22,
+    "deck": 77.22,
+    "embark_town": 0.22
+  },
+  "age_outliers": 65,
+  "age_iqr_bounds": [
+    2.5,
+    54.5
+  ],
+  "fare_outliers": 114,
+  "fare_iqr_bounds": [
+    -26.76,
+    65.66
+  ],
+  "fare_mean": 32.1,
+  "fare_median": 14.45,
+  "fare_mode": 8.05,
+  "strongest_correlations": [
+    {
+      "first": "pclass",
+      "second": "fare",
+      "correlation": -0.5481932852366449
+    },
+    {
+      "first": "sibsp",
+      "second": "parch",
+      "correlation": 0.4145416380997264
+    }
+  ],
+  "class_balance": {
+    "0": 0.6175,
+    "1": 0.3825
+  }
+}
