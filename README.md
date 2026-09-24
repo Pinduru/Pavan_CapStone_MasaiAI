@@ -305,89 +305,6 @@ analytics/
     └── modeling_summary.json
 ```
 
-## Installation
-
-Create and activate a virtual environment from the repository root.
-
-### macOS or Linux
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-
-### Windows
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-Install the required packages:
-
-```bash
-pip install -r analytics/requirements.txt
-```
-
-## Running the Module
-
-Run the complete module from the repository root:
-
-```bash
-python analytics/run_all.py
-```
-
-The scripts can also be run separately in the required order:
-
-```bash
-python analytics/01_eda.py
-python analytics/02_modeling.py
-```
-
-## Dataset Profile
-
-The original Titanic dataset contains:
-
--- 891 rows
--- 15 columns
-
-The complete `df.info()`, `df.describe()` and shape results are stored in:
-
-```text
-output/01_profile.txt
-```
-
-After missing-value handling, the cleaned dataset contains 889 rows and 14 columns.
-
-## Missing-Value Handling
-
-| Column        | Missing | Treatment                                                                            |
-| ------------- | ------: | ------------------------------------------------------------------------------------ |
-| `age`         |  19.87% | Imputed using the median because the missing percentage is between 5% and 30%.       |
-| `embarked`    |   0.22% | Rows were removed because the missing percentage is below 5%.                        |
-| `embark_town` |   0.22% | The same two affected rows were removed.                                             |
-| `deck`        |  77.22% | Column was removed because too much information was missing for reliable imputation. |
-
-Median imputation was selected for age because it is less affected by extreme values than mean imputation.
-
-## Univariate Analysis
-
-Histograms and box plots were created for `age` and `fare`.
-
-Using the IQR method:
-
--- Age has 65 outliers outside the range 2.50 to 54.50.
--- Fare has 114 outliers outside the range -26.76 to 65.66.
-
-The outliers were reported but not removed because they may represent genuine passengers and ticket prices.
-
-Fare statistics:
-
--- Mean: 32.10
--- Median: 14.45
--- Mode: 8.05
-
-Since mean > median > mode, fare has a right-skewed distribution. A small number of expensive tickets create the long upper tail.
 
 ## Survival Analysis
 
@@ -628,10 +545,46 @@ The reload test confirms that the saved pipeline produces the same predictions a
 
 
 Module 3:
+# Module 3 – Policy Support Assistant
 
+This module provides a local policy-question service built with sentence-transformer embeddings, ChromaDB, LangGraph and FastAPI. The default configuration is deterministic and does not require a provider key.
 
+The service accepts a question through `POST /ask`, classifies it, retrieves relevant Zepto policy documents when required and returns a validated JSON response.
 
-- `analytics/` — upcoming analytics and modeling pipeline.
-- `support_assistant/` — upcoming GenAI support assistant.
+## Project structure
+
+```text
+support_assistant/
+├── docs/
+│   ├── doc_01.txt
+│   ├── doc_02.txt
+│   ├── doc_03.txt
+│   ├── doc_04.txt
+│   ├── doc_05.txt
+│   ├── doc_06.txt
+│   ├── doc_07.txt
+│   └── doc_08.txt
+├── main.py
+├── graph.py
+├── rag.py
+├── prompt.py
+├── schemas.py
+├── test_app.py
+├── requirements.txt
+├── Dockerfile
+└── README.md
+```
+
+## Default mode
+
+The default value of `MOCK_LLM` is `1`. In this mode:
+
+- Intent classification uses the required keyword rules.
+- Policy retrieval still uses real local embeddings and ChromaDB similarity search.
+- Policy answers use the most relevant retrieved document excerpt.
+- General questions receive a fixed response.
+- No provider key is required.
+- No provider request is made.
+
 
 Each module uses its own `requirements.txt`. See the module README for exact setup and run instructions.
