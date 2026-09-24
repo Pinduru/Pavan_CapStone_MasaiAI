@@ -1,0 +1,1 @@
+PASS: pd.read_sql JOIN and pd.merge outputs are equivalent.
